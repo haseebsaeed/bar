@@ -1,0 +1,29 @@
+{
+  "name": "bar",
+  "version": "1.0.0",
+  "description": "book a room",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haseebsaeed/bar.git"
+  },
+  "author": "haseeb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haseebsaeed/bar/issues"
+  },
+  "homepage": "https://github.com/haseebsaeed/bar#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "supertest": "^6.2.3"
+  }
+}
