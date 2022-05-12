@@ -94,7 +94,7 @@ describe('Room Endpoints', () => {
             expect(res.status).equal(200);
         });
 
-        it('Post /room/reserve should return 500 if the room is already reserved on that date', async () => {
+        it('Post /room/reserve should return 409 if the room is already reserved on that date', async () => {
             const body = {
                 reservation_date: date,
                 room_id: 1,
@@ -102,7 +102,7 @@ describe('Room Endpoints', () => {
             }
             await requestWithSupertest.post('/api/room/reserve').send(body);
             const res = await requestWithSupertest.post('/api/room/reserve').send(body);
-            expect(res.status).equal(500);
+            expect(res.status).equal(409);
         });
 
     })

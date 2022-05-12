@@ -23,7 +23,7 @@ async function reserveRoom(req, res, next) {
         const reservation = await roomService.reserve({ room_id, reservation_date, user_id })
 
         if (reservation) res.status(200).json('Room has been reserved!');
-        else res.status(500).json('Room reservation failed!')
+        else res.status(409).json('Room reservation failed!')
     } catch (error) {
         next(error);
     }
