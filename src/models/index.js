@@ -6,7 +6,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const db = {};
-const { insertDummyData } = require('../init/seed')
+const insertSeedData = require('../init/seed')
 const logger = require('../logger')
 
 
@@ -37,11 +37,14 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-sequelize.sync()
-  .then(async () => {
-    logger.info("Database connected successfully")
-    await insertDummyData(db)
-  })
+//skip the sync process if its testing
+if (process.env.NODE_ENV !== 'test') {
+  sequelize.sync()
+    .then(async () => {
+      logger.info("Database connected successfully")
+      await insertSeedData(db)
+    })
+}
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

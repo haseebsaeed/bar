@@ -18,7 +18,7 @@ const fileOptions = {
 const replaceError = ({ message, stack, ...value }) => ({ message, stack, ...value });
 const replacer = (key, value) => value instanceof Error ? replaceError(value) : value;
 
-const level = process.env.NODE_ENV === 'production' ? 'info' : 'debug';
+const level = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test' ? 'info' : 'debug';
 const logger = winston.createLogger({
     level,
     format: winston.format.combine(
