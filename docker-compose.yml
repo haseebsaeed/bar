@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  mysql-server:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'bar_db'
+      MYSQL_USER: 'bar_user'
+      MYSQL_PASSWORD: 'bar_pass'
+      MYSQL_ROOT_PASSWORD: 'bar_root_pass'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+      - mysql-data:/var/lib/mysql
+    command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_general_ci']
+# Names our volume
+volumes:
+  mysql-data:
